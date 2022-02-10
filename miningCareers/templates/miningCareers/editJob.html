@@ -70,23 +70,21 @@
 							<label for="Job-Salary-2">
 								Salary in AUD
 							</label>
-							<input type="text" class="input w-input" name="Salary" value="{{jobObj.Salary}}" placeholder="$" required>
+							<input type="number" class="input w-input" name="Salary" value="{{jobObj.Salary}}" placeholder="$" required>
 						</div>
 						<div id="w-node-_88c28e3f-d57c-49c0-f060-8896dc8b776d-39388662" class="input-wrapper">
 							<label for="Job-Description">
 								Job Description
 								<span class="accent-secondary-5">*</span>
 							</label>
-							<textarea placeholder="Write your job description here. Please be as detailed as possible and include requirements, responsibilities, benefits, and any other relevant information." name="Description" class="text-area w-input">
-								{{jobObj.Description}}
-							</textarea>
+							<textarea placeholder="Write your job description here. Please be as detailed as possible and include requirements, responsibilities, benefits, and any other relevant information." name="Description" class="text-area w-input">{{jobObj.Description}}</textarea>
 						</div>
 						<div class="input-wrapper">
 							<label for="Application-URL">
 								Application Link
 								<span class="accent-secondary-5">*</span>
 							</label>
-							<input type="text" class="input w-input" name="ApplicationLink" value="{{jobObj.ApplicationLink}}" placeholder="https://" required>
+							<input type="url" class="input w-input" name="ApplicationLink" value="{{jobObj.ApplicationLink}}" placeholder="https://" required>
 						</div>
 					  </div>
 					  <div class="divider card-post-job-form"></div>
@@ -103,7 +101,7 @@
 								Company Website
 								<span class="accent-secondary-5">*</span>
 							</label>
-							<input type="text" class="input w-input" name="CompanyWebsite"placeholder="https://" value="{{jobObj.CompanyWebsite}}" required>
+							<input type="url" class="input w-input" name="CompanyWebsite"placeholder="https://" value="{{jobObj.CompanyWebsite}}" required>
 						</div>
 					  </div>
 					</div>
