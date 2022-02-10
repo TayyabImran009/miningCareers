@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+  <div style="opacity:0" class="page-wrapper">
+    <div class="section home wf-section">
+      <div data-w-id="79cc5e11-23b1-da9f-4f65-26174000ce2d" style="-webkit-transform:translate3d(0, 0, 0) scale3d(0.95, 0.95, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(0.95, 0.95, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(0.95, 0.95, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(0.95, 0.95, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="container-medium-736px home-hero">
+        <h1 data-w-id="7c40314c-5dc6-b15a-84ae-c36852bb1073" class="title home-hero">Welcome {{request.user.username}}</h1>
+      </div>
+      <div data-w-id="02640c10-77c8-bc5e-ea06-f7cbe5784253" style="-webkit-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 20px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="container-default w-container">
+        <div class="job-board-wrapper">
+          <div class="split-content job-board-content">
+            <div class="jobs-wrapper">
+              <div class="w-dyn-list">
+				<div class="split-content header-left" style="display: flex; justify-content: end; margin-bottom: 10px;">
+					<a href="{% url 'addJob' %}" class="button-primary header-button w-button">Add Job</a>
+				</div>
+				{% if jobObj %}
+				{% for job in jobObj %}
+                <div role="list" class="jobs-grid w-dyn-items">
+                  <div role="listitem" class="job-item w-dyn-item">
+                    <a href="{% url 'editJob' job.id%}" class="card job w-inline-block">
+                      <div class="split-content card-job-left">
+                        <div class="div-block">
+                          <div class="image-wrapper card-job"><img src="" alt="" class="image card-job"></div>
+                        </div>
+                        <div class="card-job-title-wrapper">
+                          <h3 class="title h3-size card-job-title">{{job.JobTitile}}</h3>
+                          <h4 class="title h6-size card-job-company">{{job.CompanyName}}</h4>
+                        </div>
+                      </div>
+                      <div class="split-content card-job-right">
+                        <div class="card-job-category-wrapper">
+                          <div class="card-job-category-text">{{job.Location}}</div>
+                        </div>
+                        <div class="card-job-category-wrapper">
+                          <div class="card-job-category-text">{{job.Status}}</div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+				{% endfor %}
+				{% else %}
+                <div class="card job-empty-state w-dyn-empty">
+                  <div class="job-empty-state-wrapper">
+                    <div class="image-wrapper job-empty-state-icon"><img src="images/icon-job-empty-job-board-x-template.svg" alt="" class="image job-empty-state"></div>
+                    <div class="job-empty-state-content">
+                      <h3 class="title h2-size job-empty-state">No job available</h3>
+                      <p class="paragraph job-empty-state">Want to stay up to date of all new job openings popin up? Subscribe to our newsletter to receive great jobs every week.</p>
+                      <div class="job-empty-state-form-block w-form">
+                        <form id="wf-form-Job-Empty-State-Form" name="wf-form-Job-Empty-State-Form" data-name="Job Empty State Form" class="job-empty-state-form"><input type="email" class="input job-empty-state w-input" maxlength="256" name="email-2" data-name="Email 2" placeholder="Subscribe to our newsletter" id="email-2" required=""><input type="submit" value="Subscribe" data-wait="Please wait..." class="button-primary small job-empty-state w-button"></form>
+                        <div class="success-message w-form-done">
+                          <div>Thanks for joining our newsletter.</div>
+                        </div>
+                        <div class="error-message w-form-fail">
+                          <div>Oops! Something went wrong.</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+				{% endif %}
+                
+                <div role="navigation" aria-label="List" class="w-pagination-wrapper pagination">
+                          
+                  {% if jobObj.has_previous %}
+                    <a href="?page={{jobObj.previous_page_number}}" aria-label="Previous Page" class="w-pagination-previous button-secondary pagination">
+                      <div class="w-inline-block">Previous</div>
+                    </a>
+                  {% endif %}
+
+                  {% if jobObj.has_next %}
+                    <a href="?page={{jobObj.next_page_number}}" aria-label="Next Page" class="w-pagination-next button-secondary pagination">
+                      <div class="w-inline-block">Next</div>
+                    </a>
+                  {% endif %}
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% include "footer.html" %}
+  </div>
+{% endblock content %}
