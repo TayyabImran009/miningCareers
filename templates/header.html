@@ -7,6 +7,7 @@
 		  </a>
 		</div>
 		<div class="split-content header-left">
+			<a href="{% url 'jobs' %}" style="color:white;margin-right: 20px; text-decoration: none;">Jobs</a>
 			<a href="{% url 'blogs' %}" style="color:white;margin-right: 20px; text-decoration: none;">Blogs</a>
 		{% if request.user.is_authenticated %}
 				<a href="{% url 'logout' %}" style="color:white;margin-right: 20px; text-decoration: none;">Log Out</a>

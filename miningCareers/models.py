@@ -2,6 +2,7 @@ from django.db import models
 from django.core.mail import EmailMultiAlternatives
 from mySite import settings
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 
@@ -12,14 +13,13 @@ class Job(models.Model):
 	JobTitile=models.CharField(max_length=100)
 	Location=models.CharField(max_length=1000)
 	Salary = models.FloatField()
-	Description=models.TextField()
+	Description=RichTextField()
 	ApplicationLink=models.CharField(max_length=100)
 	CompanyName=models.CharField(max_length=100)
 	CompanyWebsite=models.CharField(max_length=100)
-	Level=models.IntegerField(default=0)
-	Department=models.CharField(max_length=100,null=True)
 	Type=models.CharField(max_length=100,null=True)
 	Status=models.CharField(max_length=100, default="Pending", choices=STATUS_CHOICES)
+	Is_Featured = models.BooleanField(default=False)
 	user = models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
 
 	def save(self):

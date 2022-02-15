@@ -12,20 +12,9 @@ def home(request):
 	if request.method == 'POST':
 		jobName = request.POST.get('jobName')
 		jobLocation = request.POST.get('jobLocation')
-		if jobName != "" and jobLocation != "":
+		if jobName != "":
 			try:
-				jobObj = Job.objects.filter(JobTitile=jobName,Location=jobLocation,Status="Approved")
-			except:
-				jobObj = ""
-			context = {
-				'jobObj':jobObj,
-				'jobName':jobName,
-				'jobLocation':jobLocation
-			}
-			return render(request,'miningCareers/index.html',context)
-		elif jobName != "":
-			try:
-				jobObj = Job.objects.filter(JobTitile=jobName, Status="Approved")
+				jobObj = Job.objects.filter(JobTitile=jobName, Is_Featured=True)
 			except:
 				jobObj = ""
 			context = {
@@ -36,7 +25,7 @@ def home(request):
 			return render(request,'miningCareers/index.html',context)
 		elif jobLocation != "":
 			try:
-				jobObj = Job.objects.filter(Location=jobLocation, Status="Approved")
+				jobObj = Job.objects.filter(Location=jobLocation, Is_Featured=True)
 			except:
 				jobObj = ""
 			context = {
@@ -46,7 +35,7 @@ def home(request):
 				}
 			return render(request,'miningCareers/index.html',context)
 			
-	jobObj = Job.objects.filter(Status="Approved")
+	jobObj = Job.objects.filter(Is_Featured=True)
 	
 	page = request.GET.get('page')
 	results = 10
@@ -96,10 +85,47 @@ def postJob(request):
 
 def jobs(request):
 
-	jobObj = Job.objects.all()
+	if request.method == 'POST':
+		jobName = request.POST.get('jobName')
+		jobLocation = request.POST.get('jobLocation')
+		if jobName != "":
+			try:
+				jobObj = Job.objects.filter(JobTitile=jobName)
+			except:
+				jobObj = ""
+			context = {
+				'jobObj':jobObj,
+				'jobName':jobName,
+				'jobLocation':jobLocation
+			}
+			return render(request,'miningCareers/index.html',context)
+		elif jobLocation != "":
+			try:
+				jobObj = Job.objects.filter(Location=jobLocation)
+			except:
+				jobObj = ""
+			context = {
+					'jobObj':jobObj,
+					'jobName':jobName,
+					'jobLocation':jobLocation
+				}
+			return render(request,'miningCareers/index.html',context)
 
+	jobObj = Job.objects.all()
+	page = request.GET.get('page')
+	results = 10
+	paginator = Paginator(jobObj, results)
+
+	try:
+		jobObj = paginator.page(page)
+	except PageNotAnInteger:
+		page = 1
+		jobObj = paginator.page(page)
+	except EmptyPage:
+		page = paginator.num_pages
 	context = {
-		'jobObj':jobObj
+		'jobObj':jobObj,
+		'paginator':paginator
 	}
 	return render(request,'miningCareers/jobs.html',context)
 

@@ -10,7 +10,7 @@
       </div>
       <div data-w-id="2b480eb6-5246-9ef2-c6ba-5ef8c1f775fb" class="container-default w-container">
         <div class="card home-jobs-filters">
-          <form class="form" method="POST">
+          <form class="form" action="{% url 'jobs' %}" method="POST">
             {% csrf_token %}
               <input type="text" class="input home-jobs-filter-search-input w-input" placeholder="Search for mining jobs" name="jobName" value="{{jobName}}">
               <input type="text" class="input home-jobs-filter-search-input-location w-input" placeholder="Australia" id="Search-Location-2" name="jobLocation" value="{{jobLocation}}">

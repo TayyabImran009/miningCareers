@@ -52,18 +52,6 @@
                       <div class="card-job-post-category-text">{{jobObj.Location}}</div>
                     </div>
                     <div class="card-job-post-category-wrapper">
-                      <div class="card-job-post-category-title-wrapper"><img src="images/icon-2-job-categories-job-board-x-template.svg" alt="" class="card-job-post-category-title-icon">
-                        <div>Level</div>
-                      </div>
-                      <div class="card-job-post-category-text">{{jobObj.Level}}</div>
-                    </div>
-                    <div class="card-job-post-category-wrapper">
-                      <div class="card-job-post-category-title-wrapper"><img src="images/icon-3-job-categories-job-board-x-template.svg" alt="" class="card-job-post-category-title-icon">
-                        <div>Department</div>
-                      </div>
-                      <div class="card-job-post-category-text">{{jobObj.Department}}</div>
-                    </div>
-                    <div class="card-job-post-category-wrapper">
                       <div class="card-job-post-category-title-wrapper"><img src="images/icon-4-job-categories-job-board-x-template.svg" alt="" class="card-job-post-category-title-icon">
                         <div>Type</div>
                       </div>
@@ -80,7 +68,7 @@
                 <div class="divider card-job-post-content-divider"></div>
                 <div class="card-job-post-content-bottom">
                   <div class="job-description-title-wrapper">
-                    <h2 class="title h3-size job-description">{{jobObj.Description}}</h2>
+                    <h2 class="title h3-size job-description">{{jobObj.Description | safe}}</h2>
                     <div class="job-description-date-wrapper">
                       <div></div>
                     </div>
